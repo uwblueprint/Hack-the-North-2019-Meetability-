@@ -1,0 +1,138 @@
+#!/bin/bash
+
+echo "
+Valid create commands are:
+./create component ComponentName
+./create page PageName
+./create slice slicename
+./create actiontype ACTION_TYPE_NAME
+"
+
+case $1 in
+    slice)
+        echo "Creating slice $2. Make sure to import and include the new reducer in:
+        src/redux/reducers/index.js
+        "
+        touch src/redux/actions/$2.js
+        touch src/redux/reducers/$2.js
+        touch src/redux/selectors/$2.js
+        
+        echo "export * from './$2.js';" >> src/redux/actions/index.js
+        echo "export * from './$2.js';" >> src/redux/selectors/index.js
+        
+        echo "//$2.js
+import { REPLACE_ME } from '../actionTypes';
+//import { auth, db } from '../../utils/firebase';
+
+export const $2Action = (payload) => dispatch => {
+    return dispatch({
+        type: REPLACE_ME,
+        payload: payload
+    });
+};
+        " >> src/redux/actions/$2.js
+        
+        echo "//$2.js
+import { REPLACE_ME } from '../actionTypes';
+
+const initialState = {
+    data: true
+};
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case REPLACE_ME:
+            return {
+                ...state,
+                data: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+export default reducer;
+        " >> src/redux/reducers/$2.js
+        
+        echo "const getSliceState = store => store.$2;
+
+export const get$2Data = store => getSliceState(store).data;
+        " >> src/redux/selectors/$2.js
+    ;;
+    actiontype)
+        echo "Creating action type $2.
+        "
+        echo "export const $2 = '$2';" >> src/redux/actionTypes.js
+    ;;
+    component)
+        echo "Creating component $2.
+        "
+        touch src/components/$2.js
+        
+        echo "//$2.js
+import React, { Fragment } from 'react';
+//import { } from '@reach/router';
+//import { useDispatch, useSelector } from 'react-redux';
+//import { } from '../redux/selectors';
+//import { } from '../redux/actions';
+//import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
+/*
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+    }
+}));
+*/
+
+export default function $2() {
+
+    //const dispatch = useDispatch();
+    //const classes = useStyles();
+
+    return (
+        <Fragment>
+            <Typography variant=\"p\">This is a new component called $2.</Typography>
+        </Fragment>
+    );
+}
+        " >> src/components/$2.js
+    ;;
+    page)
+        echo "Creating page $2.
+        "
+        touch src/pages/$2.js
+        
+        echo "//$2.js
+import React, {} from 'react';
+//import { } from '@reach/router';
+//import { useDispatch, useSelector } from 'react-redux';
+//import { } from '../redux/selectors';
+//import { } from '../redux/actions';
+//import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Page from '../components/Page';
+
+/*
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+    }
+}));
+*/
+
+export default function $2() {
+
+    //const dispatch = useDispatch();
+    //const classes = useStyles();
+
+    return (
+        <Page title=\"$2\">
+            <Typography align=\"center\" variant=\"h2\" component=\"h2\">This is a new page called $2.</Typography>
+        </Page>
+    );
+}
+        " >> src/pages/$2.js
+    ;;
+esac

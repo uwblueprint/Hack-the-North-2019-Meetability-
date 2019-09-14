@@ -1,0 +1,47 @@
+{
+  "name": "cra-firebase-htn-starter",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.4.1",
+    "@material-ui/icons": "^4.4.1",
+    "@material-ui/styles": "^4.4.1",
+    "@reach/router": "^1.2.1",
+    "classnames": "^2.2.6",
+    "firebase": "^6.6.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "redux-starter-kit": "^0.6.3",
+    "redux-thunk": "^2.3.0",
+    "typeface-open-sans": "^0.0.75"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "react-scripts build && firebase deploy",
+    "functions": "firebase serve --only functions",
+    "localstart": "REACT_APP_LOCAL_FUNCTIONS=true react-scripts start"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
