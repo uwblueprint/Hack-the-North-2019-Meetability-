@@ -1,17 +1,20 @@
 //Home.js
-import React, {} from 'react';
+import React, { } from 'react';
 //import { } from '@reach/router';
-// import { useSelector } from 'react-redux';
-// import { getUser } from '../redux/selectors';
+//import { } from 'react-redux';
+//import { } from '../redux/selectors';
 import { } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import Page from '../components/Page';
+import UserListTabs from '../components/UserListTabs';
 import MapContainer from '../components/MapContainer';
 
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
+        padding: 0,
+        margin: 0
     }
 }));
 
@@ -20,14 +23,16 @@ export default function Home() {
     //const dispatch = useDispatch();
     const classes = useStyles();
 
-    // const user = useSelector(getUser);
-
     return (
-        <Page title="Home" ClassName={classes.root}>
-            {/* <Typography align="center" variant="h2" component="h2">{`Hello ${user.username}.`}</Typography> */}
-            <div style={{position: 'absolute', height: '100%', width: '50%', padding: '0px', margin: '0px', left: '50%', top: '65px'}}>
-                <MapContainer />
-            </div>
+        <Page title="Home" ClassName={classes.root} borderless>
+            <Grid container className={classes.root} spacing={0}>
+                <Grid item xs={12} sm={6}>
+                    <UserListTabs />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <MapContainer />
+                </Grid>
+            </Grid>
         </Page>
     );
 }

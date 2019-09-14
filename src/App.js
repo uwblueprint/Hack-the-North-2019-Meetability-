@@ -17,6 +17,7 @@ import CreateProfile from './pages/createProfile';
 import Org from './pages/Org';
 import CareTaker from './pages/CareTaker';
 import Individual from './pages/Individual';
+import Messages from './pages/Messages';
 
 /*
 const useStyles = makeStyles(theme => ({
@@ -52,7 +53,9 @@ export default function App() {
             <CareTaker path="CareTaker"/>
             <Individual path="Individual"/>
             <Home path="home"/>
+            <Messages path="messages"/>
             {user && <Home path="/"/>}
+            {!user && <Splash path="/"/>}
             <Splash path="/splash"/>
             <NotFound default/>
           </Router>

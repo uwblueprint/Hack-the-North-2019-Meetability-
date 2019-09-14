@@ -9,8 +9,12 @@ export const SET_WARNING = 'SET_WARNING';
 export const SET_USER = 'SET_USER';
 export const SET_ALL_USERS = 'SET_ALL_USERS';
 export const SET_FRIENDS = 'SET_FRIENDS';
+export const SET_FOLLOWING = 'SET_FOLLOWING';
 export const SET_FOLLOWERS = 'SET_FOLLOWERS';
 
 //threads
 export const SET_THREAD = 'SET_THREAD';
 export const SET_THREADS = 'SET_THREADS';
+
+//admin
+export const SET_SIGN_UP_FORM = 'SET_SIGN_UP_FORM';

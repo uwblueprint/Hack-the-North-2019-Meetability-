@@ -3,7 +3,7 @@ import { SET_THREAD, SET_THREADS } from '../actionTypes';
 
 const initialState = {
     thread: null,
-    threads: []
+    threads: {}
 };
 
 const reducer = (state = initialState, action) => {
