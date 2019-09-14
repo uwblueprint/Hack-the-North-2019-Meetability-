@@ -13,7 +13,16 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Page({ title, children }) {
+const dynamicStyle = borderless => (
+    borderless ?
+        {
+            margin: 0,
+            padding: 0
+        } :
+        {}
+);
+
+export default function Page({ title, children, borderless }) {
 
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -23,7 +32,9 @@ export default function Page({ title, children }) {
     if (storeTitle !== title) dispatch(setTitle(title));
 
     return (
-        <Container maxWidth="sm" className={classes.root}>
+        <Container maxWidth={borderless ? false : "sm"}
+            className={classes.root}
+            style={dynamicStyle(borderless)}>
             {children}
         </Container>
     );
