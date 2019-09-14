@@ -1,8 +1,8 @@
 //Individual.js
-import React, { } from 'react';
+import React, { useState } from 'react';
 //import { } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
-//import { } from '../redux/selectors';
+import { getSignUpFormData } from '../redux/selectors';
 //import { } from '../redux/actions';
 //import { makeStyles } from '@material-ui/core/styles';
 import {Component} from 'react';
@@ -19,72 +19,44 @@ const useStyles = makeStyles(theme => ({
 }));
 */
 
-export default class Individual extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            questions: []
-        };
-    }
+export default function Individual() {
 
-    //const dispatch = useDispatch();
-    //const classes = useStyles();
     
-    componentWillMount = () => {
-        
-        let storageDB = db.collection("admin").doc(
-            "signup-form"
-        );
-        
-        storageDB.get().then(function(doc) {
-            if (doc.exists) {
-                let q = [];
-                Object.keys(doc.data().questions).map(function(keyName, keyIndex) {
-                    console.log(keyName);
-                    q.push(keyName);
-                  // use keyName to get current key's name
-                  // and a[keyName] to get its value
-                  return 0
-                })
-                this.setState({"questions": q});
-            }
-            
-        }.bind(this)).catch(function(error) {
-            console.log("Error getting document:", error);
-        });
+    const [state, setState] = useState({
+        questions: []
+    });
+    
+    const sign_up_form = useSelector(getSignUpFormData);
+    
+    const questions = sign_up_form.questions;
+    
+    console.log(sign_up_form);
+    
+    let items = state.questions.map((item, key) =>
+        <div>
+            <h1 key={item}>{item}</h1>
+            <input
+                type="text"
+                value={item}
+                onChange={this.handleChange}
+            />
+        </div>
+    );
+    const saveAndContinue = () => {
+        //do something
     }
-    
-    saveAndContinue = () => {
-        let user = getUser();
-        console.log(user);
-    }
-    
-    render() {
-        
-        this.saveAndContinue()
         
         
-        this.items = this.state.questions.map((item, key) =>
-            <div>
-                <h1 key={item}>{item}</h1>
-                <input
-                    type="text"
-                    value={item}
-                    onChange={this.handleChange}
-                />
-            </div>
-        );
         return (
             <div>
                 <Page title="Individual">
                     <Typography align="center" variant="h2" component="h2">This is a new page called Individual.</Typography>
-                    {this.items}
+                    {items}
                 </Page>
                 <a href="home" class="stretched-link">
-                    <button href="/" onClick={this.saveAndContinue}>Save and Continue</button>
+                    <button href="/" onClick={saveAndContinue}>Save and Continue</button>
                 </a>
             </div>
         );
-    }
 }
-        
+
