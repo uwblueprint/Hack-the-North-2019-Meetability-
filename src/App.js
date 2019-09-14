@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser, getTitle } from './redux/selectors';
 import { fetchUser } from './redux/actions';
 import Navbar from './components/Navbar';
+import InfoModal from './components/InfoModal';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
+import Splash from './pages/Splash';
 import CreateProfile from './pages/createProfile';
 import Org from './pages/Org';
 import CareTaker from './pages/CareTaker';
@@ -40,6 +42,7 @@ export default function App() {
           <Helmet>
             <title>{title}</title>
           </Helmet>
+          <InfoModal/>
           <Navbar />
           <Router>
             <SignIn path="signin"/>
@@ -50,6 +53,7 @@ export default function App() {
             <Individual path="Individual"/>
             <Home path="home"/>
             {user && <Home path="/"/>}
+            <Splash path="/splash"/>
             <NotFound default/>
           </Router>
         </div>

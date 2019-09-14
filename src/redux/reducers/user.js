@@ -1,8 +1,10 @@
 //user.js
-import { SET_USER } from '../actionTypes';
+import { SET_USER, SET_FRIENDS, SET_FOLLOWERS } from '../actionTypes';
 
 const initialState = {
-    user: null
+    user: null,
+    friends: [],
+    followers: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,10 +14,20 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 user: action.user
             };
+        case SET_FRIENDS:
+            return {
+                ...state,
+                friends: action.friends
+            };
+        case SET_FOLLOWERS:
+            return {
+                ...state,
+                followers: action.followers
+            };
         default:
             return state;
     }
 };
 
 export default reducer;
-        
+

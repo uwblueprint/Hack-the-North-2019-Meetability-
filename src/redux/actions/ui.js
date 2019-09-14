@@ -1,5 +1,5 @@
 //ui.js
-import { SET_TITLE } from '../actionTypes';
+import { SET_TITLE, SET_WARNING, SET_LOADING } from '../actionTypes';
 
 export const setTitle = (title) => dispatch => {
     return dispatch({
@@ -7,4 +7,17 @@ export const setTitle = (title) => dispatch => {
         title
     });
 };
+
+export const setWarning = (warning = '') => dispatch => {
+    return dispatch({
+        type: SET_WARNING,
+        warning
+    });
+};
         
+export const setLoading = (loading = false) => dispatch => {
+    return dispatch({
+        type: SET_LOADING,
+        loading
+    });
+};

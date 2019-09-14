@@ -1,5 +1,6 @@
 //SignIn.js
 import React, { useState } from 'react';
+import { } from '@reach/router';
 import { useDispatch } from 'react-redux';
 //import { } from '../redux/selectors';
 import { createUserWithEmailPassword } from '../redux/actions';
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function SignIn() {
+export default function SignUp() {
 
     const classes = useStyles();
 

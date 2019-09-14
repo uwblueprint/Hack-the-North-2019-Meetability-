@@ -1,8 +1,10 @@
 //ui.js
-import { SET_TITLE } from '../actionTypes';
+import { SET_TITLE, SET_LOADING, SET_WARNING } from '../actionTypes';
 
 const initialState = {
-    title: 'App'
+    title: 'App',
+    loading: false,
+    warning: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,10 +14,20 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 title: action.title
             };
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.loading
+            };
+        case SET_WARNING:
+            return {
+                ...state,
+                warning: action.warning
+            };
         default:
             return state;
     }
 };
 
 export default reducer;
-        
+
