@@ -1,11 +1,11 @@
 //Home.js
 import React, {} from 'react';
 //import { } from '@reach/router';
-import { useSelector } from 'react-redux';
-import { getUser } from '../redux/selectors';
+// import { useSelector } from 'react-redux';
+// import { getUser } from '../redux/selectors';
 import { } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Page from '../components/Page';
 import MapContainer from '../components/MapContainer';
 
@@ -20,7 +20,7 @@ export default function Home() {
     //const dispatch = useDispatch();
     const classes = useStyles();
 
-    const user = useSelector(getUser);
+    // const user = useSelector(getUser);
 
     return (
         <Page title="Home" ClassName={classes.root}>
