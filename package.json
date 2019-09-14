@@ -30,7 +30,8 @@
     "eject": "react-scripts eject",
     "deploy": "react-scripts build && firebase deploy",
     "functions": "firebase serve --only functions",
-    "localstart": "REACT_APP_LOCAL_FUNCTIONS=true react-scripts start"
+    "localstart": "REACT_APP_LOCAL_FUNCTIONS=true react-scripts start",
+    "travisDeploy": "react-scripts build && firebase deploy --token $FIREBASE_TOKEN --non-interactive"
   },
   "eslintConfig": {
     "extends": "react-app"
