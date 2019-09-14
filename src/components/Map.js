@@ -20,6 +20,7 @@ export class CurrentLocation extends React.Component {
       }
     };
   }
+
   componentDidMount() {
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
@@ -51,7 +52,6 @@ export class CurrentLocation extends React.Component {
       // checks if google is available
       const { google } = this.props;
       const maps = google.maps;
-
       const mapRef = this.refs.map;
 
       // reference to the actual DOM element
@@ -67,6 +67,7 @@ export class CurrentLocation extends React.Component {
           zoom: zoom
         }
       );
+
       // maps.Map() is constructor that instantiates the map
       this.map = new maps.Map(node, mapConfig);
     }
@@ -83,6 +84,32 @@ export class CurrentLocation extends React.Component {
       let center = new maps.LatLng(current.lat, current.lng);
       map.panTo(center);
     }
+
+    let isEvent = true;
+    let address = "200 University Ave W, Waterloo, ON N2L 3G1";
+    let url = "https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyDOBBn3EkNgWjlVhR4MdghUn1SBhoFeFaE";
+    console.log(url);
+    fetch(url)
+    .then(res=>res.json())
+    .then((data) => {
+      console.log(data);
+      let latlng = new maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng);
+      let marker = new maps.Marker({
+        position: latlng,
+        map,
+        icon: {
+          url: isEvent ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" : "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+        }
+      });
+      google.maps.event.addListener(marker , 'click', function(){
+      var infowindow = new google.maps.InfoWindow({
+          content:'Hello Title',
+          position: latlng,
+        });
+        infowindow.open(map);
+      });
+    })
+    .catch(console.log);
   }
 
   renderChildren() {
