@@ -5,7 +5,6 @@ import './createProfile.css';
 //import { useDispatch, useSelector } from 'react-redux';
 //import { } from '../redux/selectors';
 //import { } from '../redux/actions';
-import { makeStyles } from '@material-ui/core/styles';
 import {ReactComponent as CancelIcon} from './caretaker.svg';
 import {ReactComponent as SavedIcon} from './individual.svg';
 import {ReactComponent as SearchIcon} from './org.svg';
@@ -35,7 +34,7 @@ export default function CreateProfile() {
                       <div className='welcome-message'>What would you like to do today?</div>
                   </div>
                   <div class="column welcome-col">
-                      <a href="find-time" class="stretched-link">
+                      <a href="Organization" class="stretched-link">
                           <Card className="welcome-card" variant="top">
                               <SearchIcon className="icon-picture"/>
                               <CardBody>
@@ -47,7 +46,7 @@ export default function CreateProfile() {
                       </a>
                  </div>
                  <div class="column welcome-col">
-                     <a href="saved" class="stretched-link">
+                     <a href="Individual" class="stretched-link">
                          <Card className="welcome-card" variant="top">
                              <SavedIcon className="icon-picture"/>
                              <CardBody>
@@ -59,14 +58,16 @@ export default function CreateProfile() {
                      </a>
                  </div>
                  <div class="column welcome-col">
-                     <Card className="welcome-card" variant="top">
-                         <CancelIcon className="icon-picture"/>
-                         <CardBody>
-                             <CardText>
-                                 Caretaker
-                             </CardText>
-                         </CardBody>
-                     </Card>
+                     <a href="CareTaker" class="stretched-link">
+                         <Card className="welcome-card" variant="top">
+                             <CancelIcon className="icon-picture"/>
+                             <CardBody>
+                                 <CardText>
+                                     Caretaker
+                                 </CardText>
+                             </CardBody>
+                         </Card>
+                     </a>
                  </div>
               </div>
            </div>
