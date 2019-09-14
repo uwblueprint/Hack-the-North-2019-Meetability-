@@ -24,11 +24,10 @@ export default function Home() {
 
     return (
         <Page title="Home" ClassName={classes.root}>
-            <Typography align="center" variant="h2" component="h2">{`Hello ${user.username}.`}</Typography>
-            <div style={"width: 50%"}>
+            {/* <Typography align="center" variant="h2" component="h2">{`Hello ${user.username}.`}</Typography> */}
+            <div style={{position: 'absolute', height: '100%', width: '50%', padding: '0px', margin: '0px', left: '50%', top: '65px'}}>
                 <MapContainer />
             </div>
         </Page>
     );
 }
-        
