@@ -7,21 +7,20 @@ import { setTitle } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const styledBy = (property, mapping) => props => mapping[props[property]];
-
 const useStyles = makeStyles(theme => ({
     root: {
-        marginTop: styledBy('borderless', {
-            default: theme.spacing(4),
-            true: 0
-        }),
-        padding: 0
+        marginTop: theme.spacing(4)
     }
 }));
 
-// const borderlessStyles = {
-//     padding: 0
-// }
+const dynamicStyle = borderless => (
+    borderless ?
+        {
+            margin: 0,
+            padding: 0
+        } :
+        {}
+);
 
 export default function Page({ title, children, borderless }) {
 
@@ -33,7 +32,9 @@ export default function Page({ title, children, borderless }) {
     if (storeTitle !== title) dispatch(setTitle(title));
 
     return (
-        <Container maxWidth={borderless ? false : "sm"} className={classes.root} borderless>
+        <Container maxWidth={borderless ? false : "sm"}
+            className={classes.root}
+            style={dynamicStyle(borderless)}>
             {children}
         </Container>
     );
