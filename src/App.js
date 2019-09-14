@@ -6,13 +6,15 @@ import { Router } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, getTitle } from './redux/selectors';
 import { fetchUser } from './redux/actions';
-import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import CreateProfile from './pages/createProfile';
+import Org from './pages/Org';
+import CareTaker from './pages/CareTaker';
+import Individual from './pages/Individual';
 
 /*
 const useStyles = makeStyles(theme => ({
@@ -43,6 +45,9 @@ export default function App() {
             <SignIn path="signin"/>
             <SignUp path="signup"/>
             <CreateProfile path="createProfile"/>
+            <Org path="Organization"/>
+            <CareTaker path="CareTaker"/>
+            <Individual path="Individual"/>
             {user && <Home path="/"/>}
             <NotFound default/>
           </Router>
