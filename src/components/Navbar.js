@@ -56,6 +56,8 @@ function DropdownLinks() {
                 onClose={handleClose}
             >
                 <MenuItem component={Link} to="/">Home</MenuItem>
+                <MenuItem component={Link} to="/messages">Messages</MenuItem>
+
             </Menu>
         </Fragment>
     );

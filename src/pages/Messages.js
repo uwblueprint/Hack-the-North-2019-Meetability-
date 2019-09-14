@@ -27,13 +27,11 @@ export default function Messages() {
     //const dispatch = useDispatch();
     const classes = useStyles();
     // set the initial state of messages so that it is not undefined on load
-    const value = "ok"
     return (
         <Page title="Messages" borderless>
              <Tabs
             orientation="vertical"
             variant="scrollable"
-            value={value}
             className={classes.tabs}
             style={{
                 position:"fixed",
