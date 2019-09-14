@@ -7,10 +7,12 @@ import { getUser, getTitle } from './redux/selectors';
 import { fetchUser } from './redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './components/Navbar';
+import InfoModal from './components/InfoModal';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
+import Splash from './pages/Splash';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,11 +36,13 @@ export default function App() {
           <Helmet>
             <title>{title}</title>
           </Helmet>
+          <InfoModal/>
           <Navbar />
           <Router>
             <SignIn path="signin"/>
             <SignUp path="signup"/>
             {user && <Home path="/"/>}
+            <Splash path="/splash"/>
             <NotFound default/>
           </Router>
         </div>
