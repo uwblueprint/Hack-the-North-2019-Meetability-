@@ -5,5 +5,7 @@ export const getUser = store => getSliceState(store).user;
 export const getAllUsers = store => getSliceState(store).all_users;
         
 export const getFriends = store => getSliceState(store).friends;
+
+export const getFollowing = store => getSliceState(store).following;
         
 export const getFollowers = store => getSliceState(store).followers;

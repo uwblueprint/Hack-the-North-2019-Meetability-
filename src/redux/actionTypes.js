@@ -9,6 +9,7 @@ export const SET_WARNING = 'SET_WARNING';
 export const SET_USER = 'SET_USER';
 export const SET_ALL_USERS = 'SET_ALL_USERS';
 export const SET_FRIENDS = 'SET_FRIENDS';
+export const SET_FOLLOWING = 'SET_FOLLOWING';
 export const SET_FOLLOWERS = 'SET_FOLLOWERS';
 
 //threads

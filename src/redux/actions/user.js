@@ -1,9 +1,10 @@
 //user.js
-import { SET_USER, SET_ALL_USERS, SET_FOLLOWERS, SET_FRIENDS } from '../actionTypes';
+import { SET_USER, SET_ALL_USERS, SET_FOLLOWERS, SET_FRIENDS, SET_FOLLOWING } from '../actionTypes';
 import { auth, db } from '../../utils/firebase';
 import { setLoading, setWarning } from './ui';
 import { fetchThreads } from './thread';
 import { navigate } from '@reach/router';
+import store from '../store';
 
 /**
  * Logs in the user with the given email and password
@@ -48,7 +49,7 @@ export const logoutUser = () => async dispatch => {
  * @param {*} email 
  * @param {*} password 
  */
-export const createUserWithEmailPassword = ( userParams ) => async dispatch => {
+export const createUserWithEmailPassword = (userParams) => async dispatch => {
 
     dispatch(setLoading(true));
 
@@ -70,11 +71,12 @@ export const createUserWithEmailPassword = ( userParams ) => async dispatch => {
 
 };
 
-export const updateUser = ( userParams ) => async dispatch => {
+export const updateUser = (userParams) => async dispatch => {
 
     try {
 
         const user = auth.currentUser;
+
         await db.collection('users').doc(user.uid).update({ ...userParams });
 
     } catch (err) {
@@ -103,6 +105,7 @@ export const fetchUser = () => dispatch => {
 
                     dispatch(fetchAllUsers());
                     dispatch(fetchFriends());
+                    dispatch(fetchFollowing());
                     dispatch(fetchFollowers());
                     dispatch(fetchThreads());
 
@@ -159,23 +162,58 @@ export const fetchFriends = () => dispatch => {
         const user = auth.currentUser;
 
         db.collection('users').where("friends", "array-contains", user.uid)
-        .onSnapshot(querySnapshot => {
+            .onSnapshot(querySnapshot => {
 
-            let friends = {};
+                let friends = {};
 
-            querySnapshot.forEach(doc => {
+                querySnapshot.forEach(doc => {
 
-                const data = doc.data();
-                friends[doc.id] = data;
+                    const data = doc.data();
+                    friends[doc.id] = data;
+
+                });
+
+                dispatch({
+                    type: SET_FRIENDS,
+                    friends
+                })
 
             });
 
-            dispatch({
-                type: SET_FRIENDS,
-                friends
-            })
+    } catch (err) {
+        console.error(err);
+    }
 
-        });
+};
+
+export const fetchFollowing = () => dispatch => {
+
+    try {
+
+        const user = store.getState().user.user;
+
+
+        db.collection('users')
+            .onSnapshot(querySnapshot => {
+
+                let following = {};
+
+                querySnapshot.forEach(doc => {
+
+                    if (user.following && user.following.length && user.following.includes(doc.id)) {
+                        const data = doc.data();
+                        following[doc.id] = data;
+
+                    }
+
+                });
+
+                dispatch({
+                    type: SET_FOLLOWING,
+                    following
+                })
+
+            });
 
     } catch (err) {
         console.error(err);
@@ -189,24 +227,24 @@ export const fetchFollowers = () => dispatch => {
 
         const user = auth.currentUser;
 
-        db.collection('users').where("follows", "array-contains", user.uid)
-        .onSnapshot(querySnapshot => {
+        db.collection('users').where("following", "array-contains", user.uid)
+            .onSnapshot(querySnapshot => {
 
-            let followers = {};
+                let followers = {};
 
-            querySnapshot.forEach(doc => {
+                querySnapshot.forEach(doc => {
 
-                const data = doc.data();
-                followers[doc.id] = data;
+                    const data = doc.data();
+                    followers[doc.id] = data;
+
+                });
+
+                dispatch({
+                    type: SET_FOLLOWERS,
+                    followers
+                })
 
             });
-
-            dispatch({
-                type: SET_FOLLOWERS,
-                followers
-            })
-
-        });
 
     } catch (err) {
         console.error(err);

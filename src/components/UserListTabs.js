@@ -2,7 +2,7 @@
 import React, { Fragment, useState } from 'react';
 //import { } from '@reach/router';
 import { useSelector } from 'react-redux';
-import { getAllUsers, getFriends, getFollowers } from '../redux/selectors';
+import { getAllUsers, getFriends, getFollowing } from '../redux/selectors';
 //import { } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -27,7 +27,7 @@ export default function UserListTabs() {
 
     const all_users = useSelector(getAllUsers);
     const friends = useSelector(getFriends);
-    const followers = useSelector(getFollowers);
+    const following = useSelector(getFollowing);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -56,14 +56,14 @@ export default function UserListTabs() {
             <div ClassName={classes.root}>
                 <AppBar position="static">
                     <Tabs value={value} centered onChange={handleChange}>
-                        <Tab label="Item One" />
-                        <Tab label="Item Two" />
-                        <Tab label="Item Three" />
+                        <Tab label="All Users" />
+                        <Tab label="Friends" />
+                        <Tab label="Following" />
                     </Tabs>
                 </AppBar>
                 {getUserList(all_users, 0)}
                 {getUserList(friends, 1)}
-                {getUserList(followers, 2)}
+                {getUserList(following, 2)}
             </div>
         </Fragment>
     );
