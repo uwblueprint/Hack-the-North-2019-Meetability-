@@ -1,7 +1,8 @@
 //user.js
-import { SET_USER, SET_FOLLOWERS, SET_FRIENDS } from '../actionTypes';
+import { SET_USER, SET_ALL_USERS, SET_FOLLOWERS, SET_FRIENDS } from '../actionTypes';
 import { auth, db } from '../../utils/firebase';
 import { setLoading, setWarning } from './ui';
+import { fetchThreads } from './thread';
 import { navigate } from '@reach/router';
 
 /**
@@ -100,6 +101,11 @@ export const fetchUser = () => dispatch => {
                         user: doc.data()
                     });
 
+                    dispatch(fetchAllUsers());
+                    dispatch(fetchFriends());
+                    dispatch(fetchFollowers());
+                    dispatch(fetchThreads());
+
                 });
 
             } else {
@@ -116,6 +122,34 @@ export const fetchUser = () => dispatch => {
     } catch (err) {
         console.error(err);
     }
+};
+
+export const fetchAllUsers = () => dispatch => {
+
+    try {
+
+        db.collection('users').onSnapshot(querySnapshot => {
+
+            let all_users = {};
+
+            querySnapshot.forEach(doc => {
+
+                const data = doc.data();
+                all_users[doc.id] = data;
+
+            });
+
+            dispatch({
+                type: SET_ALL_USERS,
+                all_users
+            })
+
+        });
+
+    } catch (err) {
+        console.error(err);
+    }
+
 };
 
 export const fetchFriends = () => dispatch => {

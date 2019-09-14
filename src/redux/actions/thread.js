@@ -41,6 +41,8 @@ export const fetchThreads = () => dispatch => {
 
             });
 
+            console.log('THREADS', threads)
+
             dispatch({
                 type: SET_THREADS,
                 threads
