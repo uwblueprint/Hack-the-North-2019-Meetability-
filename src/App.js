@@ -1,4 +1,5 @@
 //App.js
+import './App.css';
 import React, { Fragment, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import { Router } from '@reach/router';
@@ -11,6 +12,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
+import CreateProfile from './pages/createProfile';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +32,7 @@ export default function App() {
 
   return (
     <Fragment>
-        <div className={classes.root}>
+        <div className="App">
           <Helmet>
             <title>{title}</title>
           </Helmet>
@@ -38,6 +40,7 @@ export default function App() {
           <Router>
             <SignIn path="signin"/>
             <SignUp path="signup"/>
+            <CreateProfile path="createProfile"/>
             {user && <Home path="/"/>}
             <NotFound default/>
           </Router>

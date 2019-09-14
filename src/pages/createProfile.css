@@ -1,0 +1,133 @@
+.welcome-message {
+    font-size: 16px;
+    color: DarkGrey;
+    float: left;
+    display: inline;
+
+}
+
+.welcome-page {
+    background: white;
+    height: 100vh;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+}
+
+.welcome-page h2, b {
+    margin: 0;
+}
+
+.stretched-link {
+    color: black;
+    text-decoration: none;
+}
+.stretched-link:hover {
+    color: #5F5FC4;
+    text-decoration: none;
+}
+
+.welcome-col {
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-top: 30px;
+    border: 1px solid LightGrey;
+}
+
+.welcome-card {
+    background-color: white;
+    height: 20vw;
+    width: 40vh;
+    display: inline;
+    margin-bottom: 10%;
+}
+
+.icon-picture {
+    width: 277px;
+    height: 185px;
+    padding-top: 30px;
+}
+
+.welcome-row-content {
+    display: table;
+    clear: both;
+    margin: auto;
+    background-color: white;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 7%;
+    padding-bottom: 15%;
+
+}
+
+.welcome-row-title{
+    content: "";
+    display: table;
+    float: center;
+    padding: 10px;
+    text-align: left;
+    margin-top: 70px;
+
+}
+.dropdown {
+    width: calc(100%);
+    color: black;
+    margin: 20px 10px;
+    
+}
+
+.headingColumn {
+  display: flex;
+  align-content: flex-start;
+  padding-left: 5%;
+}
+
+.headingRow {
+  display: flex;
+  align-content: flex-start;
+  padding-left: 2%;
+}
+
+.Select-menu-outer {
+  top: 0%;
+  bottom: 100%;
+  position:absolute;
+} 
+  
+.column {
+  float: left;
+  padding: 10px 10px 10px 7px;
+  max-width: 500px;
+}
+
+.row {
+    content: "";
+    display: table;
+    clear: both;
+    margin: auto;
+    background-color: white;
+    margin-top: calc(5% + 1cm);
+    margin-bottom: calc(5% + 1cm);
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+
+.button {
+    float: left;
+    background-color: blue;
+    border: none;
+    top: 28px;
+    margin: 20px 10px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+    width: 100%
+}
