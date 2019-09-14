@@ -3,6 +3,7 @@ import { SET_USER, SET_ALL_USERS, SET_FOLLOWERS, SET_FRIENDS, SET_FOLLOWING } fr
 import { auth, db } from '../../utils/firebase';
 import { setLoading, setWarning } from './ui';
 import { fetchThreads } from './thread';
+import { fetchSignUpForm } from './admin';
 import { navigate } from '@reach/router';
 import store from '../store';
 
@@ -62,6 +63,7 @@ export const createUserWithEmailPassword = (userParams) => async dispatch => {
         delete userParams.password;
 
         await db.collection('users').doc(user.uid).set({ ...userParams });
+        navigate('/');
 
     } catch (err) {
         console.error(err);
@@ -117,6 +119,8 @@ export const fetchUser = () => dispatch => {
                     type: SET_USER
                 });
             }
+
+            dispatch(fetchSignUpForm());
 
         });
 

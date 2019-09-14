@@ -15,3 +15,6 @@ export const SET_FOLLOWERS = 'SET_FOLLOWERS';
 //threads
 export const SET_THREAD = 'SET_THREAD';
 export const SET_THREADS = 'SET_THREADS';
+
+//admin
+export const SET_SIGN_UP_FORM = 'SET_SIGN_UP_FORM';
