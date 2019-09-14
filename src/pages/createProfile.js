@@ -6,9 +6,9 @@ import './createProfile.css';
 //import { } from '../redux/selectors';
 //import { } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
-import {ReactComponent as CancelIcon} from './Cancel.svg';
-import {ReactComponent as SavedIcon} from './SavedTimes.svg';
-import {ReactComponent as SearchIcon} from './Search.svg';
+import {ReactComponent as CancelIcon} from './caretaker.svg';
+import {ReactComponent as SavedIcon} from './individual.svg';
+import {ReactComponent as SearchIcon} from './org.svg';
 import {Card, CardText, CardBody} from 'reactstrap';
 import Typography from '@material-ui/core/Typography';
 import Page from '../components/Page';
@@ -41,7 +41,7 @@ export default function CreateProfile() {
                               <SearchIcon className="icon-picture"/>
                               <CardBody>
                                   <CardText>
-                                      Find Available Times
+                                      Organization
                                   </CardText>
                               </CardBody>
                           </Card>
@@ -53,7 +53,7 @@ export default function CreateProfile() {
                              <SavedIcon className="icon-picture"/>
                              <CardBody>
                                  <CardText>
-                                     View Saved Times
+                                     Individual
                                  </CardText>
                              </CardBody>
                          </Card>
@@ -64,7 +64,7 @@ export default function CreateProfile() {
                          <CancelIcon className="icon-picture"/>
                          <CardBody>
                              <CardText>
-                                 View Cancellations
+                                 Caretaker
                              </CardText>
                          </CardBody>
                      </Card>
