@@ -79,7 +79,7 @@ function SignOutButtons() {
 
     return (
         <Fragment>
-            <Button color="inherit" onClick={handleSignOut}>Sign Out</Button>
+            <Button color="inherit" onClick={handleSignOut} component={Link} to='/signin'>Sign Out</Button>
         </Fragment>
     );
 }
