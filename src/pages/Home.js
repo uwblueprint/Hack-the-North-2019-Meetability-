@@ -7,6 +7,7 @@ import { } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Page from '../components/Page';
+import MapContainer from '../components/MapContainer';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,6 +25,9 @@ export default function Home() {
     return (
         <Page title="Home" ClassName={classes.root}>
             <Typography align="center" variant="h2" component="h2">{`Hello ${user.username}.`}</Typography>
+            <div style={"width: 50%"}>
+                <MapContainer />
+            </div>
         </Page>
     );
 }
