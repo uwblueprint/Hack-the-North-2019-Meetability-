@@ -14,16 +14,18 @@ import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import CreateProfile from './pages/createProfile';
 
+/*
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   }
 }));
+*/
 
 export default function App() {
 
   const dispatch = useDispatch();
-  const classes = useStyles();
+  //const classes = useStyles();
   const title = useSelector(getTitle);
   const user = useSelector(getUser);
 

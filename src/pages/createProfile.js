@@ -10,21 +10,20 @@ import {ReactComponent as CancelIcon} from './caretaker.svg';
 import {ReactComponent as SavedIcon} from './individual.svg';
 import {ReactComponent as SearchIcon} from './org.svg';
 import {Card, CardText, CardBody} from 'reactstrap';
-import Typography from '@material-ui/core/Typography';
-import Page from '../components/Page';
 
-
+/*
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
     }
 }));
+*/
 
 
 export default function CreateProfile() {
 
     //const dispatch = useDispatch();
-    const classes = useStyles();
+    //const classes = useStyles();
 
     return (
            <div class ="welcome-page">
