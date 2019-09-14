@@ -4,4 +4,4 @@ export const getThreads = store => getSliceState(store).threads;
 
 export const getThread = store => getSliceState(store).thread;
         
-export const getMessages = store => getSliceState(store).thread.messages;
+export const getMessages = store => getSliceState(store).thread ? getSliceState(store).thread.messages : [];
