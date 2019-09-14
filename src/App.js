@@ -55,6 +55,7 @@ export default function App() {
             <Home path="home"/>
             <Messages path="messages"/>
             {user && <Home path="/"/>}
+            {!user && <Splash path="/"/>}
             <Splash path="/splash"/>
             <NotFound default/>
           </Router>

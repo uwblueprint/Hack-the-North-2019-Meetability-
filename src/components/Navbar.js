@@ -40,6 +40,8 @@ function DropdownLinks() {
         setAnchorEl(null);
     }
 
+    const user = useSelector(getUser);
+
     return (
         <Fragment>
             <IconButton edge="start" className={classes.menuButton} color="inherit" onClick={handleClick}>
@@ -55,8 +57,10 @@ function DropdownLinks() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem component={Link} to="/">Home</MenuItem>
-                <MenuItem component={Link} to="/messages">Messages</MenuItem>
+                {user && <MenuItem component={Link} to="/">Home</MenuItem>}
+                {user && <MenuItem component={Link} to="/messages">Messages</MenuItem>}
+                {!user && <MenuItem component={Link} to="/signin">Sign In</MenuItem>}
+                {!user && <MenuItem component={Link} to="/signup">Sign Up</MenuItem>}
 
             </Menu>
         </Fragment>
@@ -79,7 +83,7 @@ function SignOutButtons() {
 
     return (
         <Fragment>
-            <Button color="inherit" onClick={handleSignOut}>Sign Out</Button>
+            <Button color="inherit" onClick={handleSignOut} component={Link} to='/signin'>Sign Out</Button>
         </Fragment>
     );
 }

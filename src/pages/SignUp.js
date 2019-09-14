@@ -1,6 +1,6 @@
 //SignIn.js
 import React, { useState } from 'react';
-import { } from '@reach/router';
+import { redirect} from '@reach/router';
 import { useDispatch } from 'react-redux';
 //import { } from '../redux/selectors';
 import { createUserWithEmailPassword } from '../redux/actions';
@@ -34,8 +34,13 @@ export default function SignUp() {
 
     const handleCreateUser = () => {
         dispatch(createUserWithEmailPassword(state));
+        //this.setState({"redirect": true});
     }
-
+    
+    //if (this.state.redirect){
+    //    return <Redirect to="createProfile" />
+    //}
+    
     return (
         <Page title="Sign Up">
             <Grid container spacing={2}>
