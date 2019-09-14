@@ -61,6 +61,7 @@ export const createUserWithEmailPassword = ( userParams ) => async dispatch => {
         delete userParams.password;
 
         await db.collection('users').doc(user.uid).set({ ...userParams });
+        navigate('createProfile');
 
     } catch (err) {
         console.error(err);

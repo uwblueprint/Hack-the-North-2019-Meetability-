@@ -1,14 +1,15 @@
 //Individual.js
-import React, {} from 'react';
+import React, { } from 'react';
 //import { } from '@reach/router';
-//import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 //import { } from '../redux/selectors';
 //import { } from '../redux/actions';
 //import { makeStyles } from '@material-ui/core/styles';
 import {Component} from 'react';
 import Typography from '@material-ui/core/Typography';
-import { auth, db } from '../utils/firebase';
+import { db } from '../utils/firebase';
 import Page from '../components/Page';
+import { getUser } from '../redux/selectors';
 
 /*
 const useStyles = makeStyles(theme => ({
@@ -34,7 +35,6 @@ export default class Individual extends Component {
         let storageDB = db.collection("admin").doc(
             "signup-form"
         );
-        this.setState({"Number": 9})
         
         storageDB.get().then(function(doc) {
             if (doc.exists) {
@@ -44,6 +44,7 @@ export default class Individual extends Component {
                     q.push(keyName);
                   // use keyName to get current key's name
                   // and a[keyName] to get its value
+                  return 0
                 })
                 this.setState({"questions": q});
             }
@@ -53,9 +54,14 @@ export default class Individual extends Component {
         });
     }
     
-    saveAndContinue
+    saveAndContinue = () => {
+        let user = getUser();
+        console.log(user);
+    }
     
     render() {
+        
+        this.saveAndContinue()
         
         
         this.items = this.state.questions.map((item, key) =>

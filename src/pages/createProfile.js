@@ -31,7 +31,7 @@ export default function CreateProfile() {
                       <h2>
                         Welcome
                       </h2>
-                      <div className='welcome-message'>What would you like to do today?</div>
+                      <div className='welcome-message'>What category do you fall into?</div>
                   </div>
                   <div class="column welcome-col">
                       <a href="Organization" class="stretched-link">
