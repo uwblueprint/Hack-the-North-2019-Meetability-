@@ -48,6 +48,7 @@ export default function App() {
             <Org path="Organization"/>
             <CareTaker path="CareTaker"/>
             <Individual path="Individual"/>
+            <Home path="home"/>
             {user && <Home path="/"/>}
             <NotFound default/>
           </Router>
