@@ -23,7 +23,7 @@ export default function NotFound() {
 
     return (
         <Page title="Not Found">
-            <Typography align="center" variant="h2" component="h2">This page does not exist.</Typography>
+            <Typography align="center" variant="h2" component="h2">This page does not exist...yet</Typography>
         </Page>
     );
 }
