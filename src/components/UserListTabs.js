@@ -1,6 +1,6 @@
 //UsersList.js
 import React, { Fragment, useState } from 'react';
-//import { } from '@reach/router';
+import { Link } from '@reach/router';
 import { useSelector } from 'react-redux';
 import { getAllUsers, getFriends, getFollowing } from '../redux/selectors';
 //import { } from '../redux/actions';
@@ -35,13 +35,13 @@ export default function UserListTabs() {
 
     const getUserList = (users = {}, index) => {
 
-        const usersArray = Object.values(users);
+        const listItems = Object.keys(users).map((key, i) => {
 
-        const listItems = usersArray.map((item, i) => {
+            const userItem = users[key];
 
             return (
-                <ListItem button key={i}>
-                    <ListItemText primary={`${item.username}`}/>
+                <ListItem button key={i} component={Link} to={`/users/${key}`}>
+                    <ListItemText primary={`${userItem.username}`}/>
                 </ListItem>
             )
         });

@@ -42,7 +42,7 @@ export default function Messages() {
             dispatch(fetchThread(key));
         };
 
-        if (index == 0) {
+        if (index === 0) {
             handleFetchThread()
         }
         return (

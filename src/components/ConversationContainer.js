@@ -27,10 +27,10 @@ export default function ConversationContainer() {
     // const thread = useSelector(getThread);
     const messages = useSelector(getMessages);
     const messageContainers = messages.map((message, i) => {
-        const messagePadding = all_users[message.from].username == user.username ? "0px 10px 10px 930px" : "0px 10px 10px 10px"
-        const messageFrom = all_users[message.from].username == user.username ? "You" : all_users[message.from].username
-        const messageBubbleColour = all_users[message.from].username == user.username ? "#586ecf" : "#f1f0f0"
-        const messageColour = all_users[message.from].username == user.username ? "white" : "black"
+        const messagePadding = all_users[message.from].username === user.username ? "0px 10px 10px 930px" : "0px 10px 10px 10px"
+        const messageFrom = all_users[message.from].username === user.username ? "You" : all_users[message.from].username
+        const messageBubbleColour = all_users[message.from].username === user.username ? "#586ecf" : "#f1f0f0"
+        const messageColour = all_users[message.from].username === user.username ? "white" : "black"
         return (
             <div style={{margin:"0px",padding: messagePadding, textAlign:"left"}}>
                 <Typography style={{marginLeft: "12px",marginBottom:"-10px" ,fontSize: "12px", color:"black"}}>

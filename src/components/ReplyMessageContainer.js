@@ -1,14 +1,13 @@
 //ReplyMessageContainer.js
 import React, { Fragment } from 'react';
 //import { } from '@reach/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { } from '../redux/selectors';
 import { sendMessage } from '../redux/actions';
 //import { makeStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
 import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { getThread } from '../redux/selectors/thread';
 /*
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,22 +20,20 @@ export default function ReplyMessageContainer() {
 
     const dispatch = useDispatch();
     //const classes = useStyles();
-    const thread = useSelector(getThread)
 
     const sleep = (milliseconds) => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
       }
     
     const handleKeyUp = (event) => {
-        if (event.keyCode == 13){
+        if (event.keyCode === 13){
             sendMessage()
         }
     }
     const handleSendMessage = () => {
         const textField = document.getElementById("message-text-field")
         const message = textField.value
-        if (message == "") { return }
-        console.log(message)
+        if (message === "") { return }
         dispatch(sendMessage(message));
         textField.value = ''
         sleep(100).then(() => {
