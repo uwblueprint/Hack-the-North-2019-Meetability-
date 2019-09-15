@@ -38,8 +38,8 @@ export default function Individual() {
     };
     
     const items = Object.keys(questions).map((key, i) =>
-        <div>
-            <h1 key={i}>{questions[key]}</h1>
+        <div key={i}>
+            <h1>{questions[key]}</h1>
             <Grid item xs={12}>
                 <TextField label={key}
                     variant="outlined"

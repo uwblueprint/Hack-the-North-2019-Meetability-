@@ -25,16 +25,16 @@ export default function CreateProfile() {
     //const classes = useStyles();
 
     return (
-           <div class ="welcome-page">
-              <div class="welcome-row-content">
-                  <div class="welcome-row-title">
+           <div className="welcome-page">
+              <div className="welcome-row-content">
+                  <div className="welcome-row-title">
                       <h2>
                         Welcome
                       </h2>
                       <div className='welcome-message'>What category do you fall into?</div>
                   </div>
-                  <div class="column welcome-col">
-                      <a href="Organization" class="stretched-link">
+                  <div className="column welcome-col">
+                      <a href="Organization" className="stretched-link">
                           <Card className="welcome-card" variant="top">
                               <SearchIcon className="icon-picture"/>
                               <CardBody>
@@ -45,8 +45,8 @@ export default function CreateProfile() {
                           </Card>
                       </a>
                  </div>
-                 <div class="column welcome-col">
-                     <a href="Individual" class="stretched-link">
+                 <div className="column welcome-col">
+                     <a href="Individual" className="stretched-link">
                          <Card className="welcome-card" variant="top">
                              <SavedIcon className="icon-picture"/>
                              <CardBody>
@@ -57,8 +57,8 @@ export default function CreateProfile() {
                          </Card>
                      </a>
                  </div>
-                 <div class="column welcome-col">
-                     <a href="CareTaker" class="stretched-link">
+                 <div className="column welcome-col">
+                     <a href="CareTaker" className="stretched-link">
                          <Card className="welcome-card" variant="top">
                              <CancelIcon className="icon-picture"/>
                              <CardBody>
