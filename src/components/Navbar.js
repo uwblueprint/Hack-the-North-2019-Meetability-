@@ -59,7 +59,7 @@ function DropdownLinks() {
             >
                 {user && <MenuItem component={Link} to="/">Home</MenuItem>}
                 {user && <MenuItem component={Link} to="/messages">Messages</MenuItem>}
-                {user && user.type && user.type == "org" && <MenuItem component={Link} to="/createEvent">Create Event</MenuItem>}
+                {user && user.type && user.type === "org" && <MenuItem component={Link} to="/createEvent">Create Event</MenuItem>}
                 {!user && <MenuItem component={Link} to="/signin">Sign In</MenuItem>}
                 {!user && <MenuItem component={Link} to="/signup">Sign Up</MenuItem>}
 

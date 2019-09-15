@@ -1,14 +1,15 @@
 //SignIn.js
 import React, { useState } from 'react';
-import { redirect} from '@reach/router';
-import { useDispatch } from 'react-redux';
-//import { } from '../redux/selectors';
-import { createUserWithEmailPassword } from '../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../redux/selectors';
+import { updateUser } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Page from '../components/Page';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,22 +27,21 @@ export default function CreateEvent() {
         name: '',
         description: '',
         location: '',
-        timestamp: ''
+        date: new Date()
     });
+
+    const user = useSelector(getUser);
 
     const handleChange = name => event => {
         setState({ ...state, [name]: event.target.value });
     };
 
     const handleCreateEvent = () => {
-        // dispatch(createUserWithEmailPassword(state));
-        console.log("TODO: handleCreateEvent");
-        //this.setState({"redirect": true});
+        const userEvents = user.events || [];
+        dispatch(updateUser({
+            events: [...userEvents, {...state, date: state.date.toISOString()}]
+        }));
     }
-    
-    //if (this.state.redirect){
-    //    return <Redirect to="createProfile" />
-    //}
     
     return (
         <Page title="Create Event">
@@ -73,15 +73,32 @@ export default function CreateEvent() {
                         className={classes.textField}
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <TextField label="Timestamp"
-                        variant="outlined"
-                        value={state.timestamp}
-                        onChange={handleChange('timestamp')}
-                        fullWidth
-                        className={classes.textField}
-                    />
-                </Grid>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <Grid item xs={12}>
+                        <KeyboardDatePicker
+                            style={{marginRight: '30px'}}
+                            margin="normal"
+                            id="date-picker-dialog"
+                            label="Date picker dialog"
+                            format="MM/dd/yyyy"
+                            value={state.date}
+                            onChange={val => setState({...state, date: val})}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                        <KeyboardTimePicker
+                            margin="normal"
+                            id="time-picker"
+                            label="Time picker"
+                            value={state.date}
+                            onChange={val => setState({...state, date: val})}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change time',
+                            }}
+                        />
+                    </Grid>
+                </MuiPickersUtilsProvider>
                 <Grid item xs={12}>
                     <Button variant='contained'
                         color='primary'
