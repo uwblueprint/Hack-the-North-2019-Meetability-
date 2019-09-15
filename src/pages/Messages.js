@@ -48,6 +48,7 @@ export default function Messages() {
         return (
             <Tab
                 key={index}
+                style={{textAlign:"left"}}
                 label={otherUsername}
                 onClick={handleFetchThread}/>
           );
@@ -61,12 +62,16 @@ export default function Messages() {
             className={classes.tabs}
             style={{
                 position:"fixed",
+                borderRight: "1px solid #2b2a2a",
                 height: "100%",
                 width:"15%",
                 margin: "0px",
-                background: "#2b2a2a",
+                background: "white",
                 overflow: "hidden",
-                color:"white",
+                color:"black",
+                textAlign: "left",
+                fontSize: "20px"
+                
             }}
             > 
                 {threadTabs}       

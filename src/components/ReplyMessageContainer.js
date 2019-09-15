@@ -35,6 +35,7 @@ export default function ReplyMessageContainer() {
     const handleSendMessage = () => {
         const textField = document.getElementById("message-text-field")
         const message = textField.value
+        if (message == "") { return }
         console.log(message)
         dispatch(sendMessage(message));
         textField.value = ''
