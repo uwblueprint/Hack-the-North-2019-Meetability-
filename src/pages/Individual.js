@@ -55,7 +55,7 @@ export default function Individual() {
 
     const saveAndContinue = async () => {
         state["type"] = "Individual"
-        await dispatch(updateUser({ questions: state }));
+        await dispatch(updateUser({ type: "Individual",  questions: state }));
         navigate("/");
     }
         
