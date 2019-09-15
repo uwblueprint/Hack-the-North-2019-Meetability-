@@ -1,11 +1,10 @@
 //HooksMapContainer.js
 import React, { useState } from 'react';
-import { navigate } from '@reach/router';
+import { } from '@reach/router';
 import { useSelector } from 'react-redux';
 import { getAllUsers } from '../redux/selectors';
 //import { } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const useStyles = makeStyles(theme => ({
