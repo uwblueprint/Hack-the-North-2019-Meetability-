@@ -1,62 +1,85 @@
 //Individual.js
 import React, { useState } from 'react';
-//import { } from '@reach/router';
+import { navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSignUpFormData } from '../redux/selectors';
+import { updateUser } from '../redux/actions';
 //import { } from '../redux/actions';
 //import { makeStyles } from '@material-ui/core/styles';
-import {Component} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { db } from '../utils/firebase';
 import Page from '../components/Page';
-import { getUser } from '../redux/selectors';
 
-/*
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
     }
 }));
-*/
+
 
 export default function Individual() {
+    
+    const dispatch = useDispatch();
+    const classes = useStyles();
 
     
-    const [state, setState] = useState({
-        questions: []
-    });
+    const [state, setState] = useState({});
     
     const sign_up_form = useSelector(getSignUpFormData);
     
-    const questions = sign_up_form.questions;
+    const questions = sign_up_form.questions || {};
     
-    console.log(sign_up_form);
+    const handleChange = name => event => {
+        setState({ ...state, [name]: event.target.value });
+    };
     
-    let items = state.questions.map((item, key) =>
+    const items = Object.keys(questions).map((key, i) =>
         <div>
-            <h1 key={item}>{item}</h1>
-            <input
-                type="text"
-                value={item}
-                onChange={this.handleChange}
-            />
+            <h1 key={i}>{questions[key]}</h1>
+            <Grid item xs={12}>
+                <TextField label={key}
+                    variant="outlined"
+                    value={state[key] || ''}
+                    onChange={handleChange(key)}
+                    type=""
+                    name=""
+                    fullWidth
+                    className={classes.textField}
+                />
+            </Grid>
         </div>
     );
-    const saveAndContinue = () => {
-        //do something
+    
+
+    const saveAndContinue = async () => {
+        state["type"] = "Individual"
+        await dispatch(updateUser({ questions: state }));
+        navigate("/");
     }
         
         
         return (
             <div>
                 <Page title="Individual">
-                    <Typography align="center" variant="h2" component="h2">This is a new page called Individual.</Typography>
-                    {items}
+                    <Typography align="center" variant="h3" component="h3">Please fill in your details!</Typography>
+                    <br/>
+                    <Grid container spacing={2}>
+                        {items}
+                        <br/>
+                            <Grid item xs={12}>
+                                <Button variant='contained'
+                                    color='primary'
+                                    fullWidth
+                                    className={classes.loginButton}
+                                    onClick={saveAndContinue}
+                                >Save and Continue</Button>
+                            </Grid>
+                    </Grid>
                 </Page>
-                <a href="home" class="stretched-link">
-                    <button href="/" onClick={saveAndContinue}>Save and Continue</button>
-                </a>
             </div>
         );
 }
-
