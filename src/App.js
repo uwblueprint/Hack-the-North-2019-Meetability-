@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import Splash from './pages/Splash';
 import CreateProfile from './pages/createProfile';
+import CreateEvent from './pages/createEvent';
 import Org from './pages/Org';
 import CareTaker from './pages/CareTaker';
 import Individual from './pages/Individual';
@@ -49,6 +50,7 @@ export default function App() {
             <SignIn path="signin"/>
             <SignUp path="signup"/>
             <CreateProfile path="createProfile"/>
+            <CreateEvent path="createEvent"/>
             <Org path="Organization"/>
             <CareTaker path="CareTaker"/>
             <Individual path="Individual"/>
