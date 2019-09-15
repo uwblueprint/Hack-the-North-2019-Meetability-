@@ -22,7 +22,7 @@ export const loginUserWithEmailPassword = ({ email, password }) => async dispatc
         navigate('/');
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
         dispatch(setWarning('Something went wrong, please try logging in again.'));
     }
 
@@ -39,7 +39,7 @@ export const logoutUser = () => async dispatch => {
         await auth.signOut();
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
     dispatch(setLoading(false));
@@ -66,7 +66,7 @@ export const createUserWithEmailPassword = (userParams) => async dispatch => {
         navigate('createProfile');
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
     dispatch(setLoading(false));
@@ -82,7 +82,7 @@ export const updateUser = (userParams) => async dispatch => {
         await db.collection('users').doc(user.uid).update({ ...userParams });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 };
@@ -127,7 +127,7 @@ export const fetchUser = () => dispatch => {
         return unsubscribe;
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 };
 
@@ -154,7 +154,7 @@ export const fetchAllUsers = () => dispatch => {
         });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 };
@@ -185,7 +185,7 @@ export const fetchFriends = () => dispatch => {
             });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 };
@@ -220,7 +220,7 @@ export const fetchFollowing = () => dispatch => {
             });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 };
@@ -251,7 +251,7 @@ export const fetchFollowers = () => dispatch => {
             });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 };

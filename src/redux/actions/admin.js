@@ -16,7 +16,7 @@ export const fetchSignUpForm = () => async dispatch => {
         });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 };
