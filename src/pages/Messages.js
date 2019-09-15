@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
 export default function Messages() {
     const dispatch = useDispatch();
     const classes = useStyles();

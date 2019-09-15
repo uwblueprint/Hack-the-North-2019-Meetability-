@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 */
 
 export default function ConversationContainer() {
-
     //const dispatch = useDispatch();
     //const classes = useStyles();
     const all_users = useSelector(getAllUsers)
@@ -30,13 +29,13 @@ export default function ConversationContainer() {
     const messageContainers = messages.map((message, i) => {
         const messagePadding = all_users[message.from].username == user.username ? "0px 10px 10px 930px" : "0px 10px 10px 10px"
         const messageFrom = all_users[message.from].username == user.username ? "You" : all_users[message.from].username
-        console.log(messagePadding)
+        const messageColour = all_users[message.from].username == user.username ? "red" : "blue"
         return (
             <div style={{margin:"0px",padding: messagePadding, textAlign:"left"}}>
                 <Typography style={{marginLeft: "12px",marginBottom:"-10px" ,fontSize: "12px", color:"gray"}}>
                     {messageFrom}
                 </Typography>
-                <SnackbarContent message={message.content} style={{width:"20px", margin: "10px"}}></SnackbarContent>
+                <SnackbarContent message={message.content} style={{width:"20px", margin: "10px", background: messageColour}}></SnackbarContent>
             </div>
         );
       });
