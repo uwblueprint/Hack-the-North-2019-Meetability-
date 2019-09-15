@@ -1,6 +1,6 @@
 //SignIn.js
 import React, { useState } from 'react';
-import { redirect} from '@reach/router';
+import { } from '@reach/router';
 import { useDispatch } from 'react-redux';
 //import { } from '../redux/selectors';
 import { createUserWithEmailPassword } from '../redux/actions';
