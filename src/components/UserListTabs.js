@@ -53,7 +53,7 @@ export default function UserListTabs() {
 
     return (
         <Fragment>
-            <div ClassName={classes.root}>
+            <div className={classes.root}>
                 <AppBar position="static">
                     <Tabs value={value} centered onChange={handleChange}>
                         <Tab label="All Users" />

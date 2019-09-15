@@ -38,7 +38,7 @@ export const fetchThreads = () => dispatch => {
             });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 }
 
@@ -64,7 +64,7 @@ export const createThread = other_user_id => async dispatch => {
         })
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 }
@@ -88,7 +88,7 @@ export const sendMessage = content => async dispatch => {
         });
 
     } catch (err) {
-        console.error(err);
+        console.warn(err);
     }
 
 }
