@@ -37,15 +37,19 @@ export default function Messages() {
         //The 2nd person in the conversation (not yourself)
         const otherUser = users.filter( id => all_users[id].username !== current_user.username)[0]
         const otherUsername = all_users[otherUser].username;
+        
         const handleFetchThread = () => {
             dispatch(fetchThread(key));
         };
 
+        if (index == 0) {
+            handleFetchThread()
+        }
         return (
             <Tab
-              key={index}
-              label={otherUsername}
-              onClick={handleFetchThread}/>
+                key={index}
+                label={otherUsername}
+                onClick={handleFetchThread}/>
           );
       });
 

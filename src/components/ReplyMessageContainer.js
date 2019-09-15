@@ -22,6 +22,10 @@ export default function ReplyMessageContainer() {
     const dispatch = useDispatch();
     //const classes = useStyles();
     const thread = useSelector(getThread)
+
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+      }
     
     const handleKeyUp = (event) => {
         if (event.keyCode == 13){
@@ -32,6 +36,9 @@ export default function ReplyMessageContainer() {
         const message = document.getElementById("message-text-field").value
         console.log(message)
         dispatch(sendMessage(message));
+        sleep(100).then(() => {
+            document.getElementById("messageList").scrollTop = document.getElementById("messageList").scrollHeight + 200
+          })
     }
 
     return (
