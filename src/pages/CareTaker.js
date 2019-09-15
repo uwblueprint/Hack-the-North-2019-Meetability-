@@ -56,7 +56,7 @@ export default function CareTaker() {
 
     const saveAndContinue = async () => {
         state["type"] = "caretaker"
-        await dispatch(updateUser({ questions: state }));
+        await dispatch(updateUser({ type: "Caretaker",  questions: state }));
         navigate("/");
     }
         

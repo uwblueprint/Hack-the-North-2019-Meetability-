@@ -56,7 +56,7 @@ export default function Org() {
 
     const saveAndContinue = async () => {
         state["type"] = "org"
-        await dispatch(updateUser({ questions: state }));
+        await dispatch(updateUser({ type: "org", questions: state }));
         navigate("/");
     }
         

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../redux/selectors';
 import { updateUser } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from '@reach/router';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -105,6 +106,8 @@ export default function CreateEvent() {
                         fullWidth
                         className={classes.createButton}
                         onClick={handleCreateEvent}
+                        component={Link}
+                        to={"/home"}
                     >Create Event</Button>
                 </Grid>
             </Grid>
