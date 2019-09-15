@@ -33,9 +33,11 @@ export default function ReplyMessageContainer() {
         }
     }
     const handleSendMessage = () => {
-        const message = document.getElementById("message-text-field").value
+        const textField = document.getElementById("message-text-field")
+        const message = textField.value
         console.log(message)
         dispatch(sendMessage(message));
+        textField.value = ''
         sleep(100).then(() => {
             document.getElementById("messageList").scrollTop = document.getElementById("messageList").scrollHeight + 200
           })
