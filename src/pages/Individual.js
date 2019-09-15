@@ -26,7 +26,6 @@ export default function Individual() {
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    
     const [state, setState] = useState({});
     
     const sign_up_form = useSelector(getSignUpFormData);
@@ -38,19 +37,18 @@ export default function Individual() {
     };
     
     const items = Object.keys(questions).map((key, i) =>
-        <div>
-            <h1 key={i}>{questions[key]}</h1>
+        <div style={{width: '100%'}}>
+            {/*<h1 key={i}>{questions[key]}</h1>*/}
             <Grid item xs={12}>
                 <TextField label={key}
                     variant="outlined"
                     value={state[key] || ''}
                     onChange={handleChange(key)}
-                    type=""
-                    name=""
                     fullWidth
                     className={classes.textField}
                 />
             </Grid>
+            <br/>
         </div>
     );
     
@@ -65,7 +63,7 @@ export default function Individual() {
         return (
             <div>
                 <Page title="Individual">
-                    <Typography align="center" variant="h3" component="h3">Please fill in your details!</Typography>
+                    <Typography align="center" variant="h3" component="h3" style={{height: '80px'}}>Account Details</Typography>
                     <br/>
                     <Grid container spacing={2}>
                         {items}
