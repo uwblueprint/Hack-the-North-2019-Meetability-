@@ -22,6 +22,10 @@ export default function ReplyMessageContainer() {
     const dispatch = useDispatch();
     //const classes = useStyles();
     const thread = useSelector(getThread)
+
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+      }
     
     const handleKeyUp = (event) => {
         if (event.keyCode == 13){
@@ -29,9 +33,15 @@ export default function ReplyMessageContainer() {
         }
     }
     const handleSendMessage = () => {
-        const message = document.getElementById("message-text-field").value
+        const textField = document.getElementById("message-text-field")
+        const message = textField.value
+        if (message == "") { return }
         console.log(message)
         dispatch(sendMessage(message));
+        textField.value = ''
+        sleep(100).then(() => {
+            document.getElementById("messageList").scrollTop = document.getElementById("messageList").scrollHeight + 200
+          })
     }
 
     return (

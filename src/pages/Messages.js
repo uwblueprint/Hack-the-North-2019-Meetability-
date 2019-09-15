@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
 export default function Messages() {
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -38,15 +37,20 @@ export default function Messages() {
         //The 2nd person in the conversation (not yourself)
         const otherUser = users.filter( id => all_users[id].username !== current_user.username)[0]
         const otherUsername = all_users[otherUser].username;
+        
         const handleFetchThread = () => {
             dispatch(fetchThread(key));
         };
 
+        if (index == 0) {
+            handleFetchThread()
+        }
         return (
             <Tab
-              key={index}
-              label={otherUsername}
-              onClick={handleFetchThread}/>
+                key={index}
+                style={{textAlign:"left"}}
+                label={otherUsername}
+                onClick={handleFetchThread}/>
           );
       });
 
@@ -58,12 +62,16 @@ export default function Messages() {
             className={classes.tabs}
             style={{
                 position:"fixed",
+                borderRight: "1px solid #2b2a2a",
                 height: "100%",
                 width:"15%",
                 margin: "0px",
-                background: "#2b2a2a",
+                background: "white",
                 overflow: "hidden",
-                color:"white",
+                color:"black",
+                textAlign: "left",
+                fontSize: "20px"
+                
             }}
             > 
                 {threadTabs}       
