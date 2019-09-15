@@ -1,28 +1,17 @@
 //thread.js
 import { SET_THREAD, SET_THREADS } from '../actionTypes';
-import { auth, db } from '../../utils/firebase';
+import firebase, { auth, db } from '../../utils/firebase';
+import store from '../store';
 
 export const fetchThread = (thread_id) => dispatch => {
 
-    try {
-
-        db.collection('threads').doc(thread_id).onSnapshot(doc => {
-
-            const thread = doc.data();
-            
-            dispatch({
-                type: SET_THREAD,
-                thread
-            });
-
-        });
-
-    } catch (err) {
-        console.error(err);
-    }
+    dispatch({
+        type: SET_THREAD,
+        thread_id
+    });
 
 };
-        
+
 export const fetchThreads = () => dispatch => {
 
     try {
@@ -30,27 +19,51 @@ export const fetchThreads = () => dispatch => {
         const user = auth.currentUser;
 
         db.collection('threads').where("users", "array-contains", user.uid)
-        .onSnapshot(querySnapshot => {
+            .onSnapshot(querySnapshot => {
 
-            let threads = {};
+                let threads = {};
 
-            querySnapshot.forEach(doc => {
+                querySnapshot.forEach(doc => {
 
-                const data = doc.data();
-                threads[doc.id] = data;
+                    const data = doc.data();
+                    threads[doc.id] = data;
+
+                });
+
+                console.log('THREADS', threads)
+
+                dispatch({
+                    type: SET_THREADS,
+                    threads
+                })
 
             });
 
-            console.log('THREADS', threads)
+    } catch (err) {
+        console.error(err);
+    }
+}
 
-            dispatch({
-                type: SET_THREADS,
-                threads
+export const sendMessage = ({ content }) => async dispatch => {
+
+    try {
+
+        const user = auth.currentUser;
+        const thread_id = store.getState().thread.thread_id;
+
+        let threadRef = db.collection('threads').doc(thread_id);
+        let dt = new Date();
+
+        threadRef.update({
+            messages: firebase.firestore.FieldValue.arrayUnion({
+                content,
+                from: user.uid,
+                timestamp: dt.toISOString()
             })
-
         });
 
     } catch (err) {
         console.error(err);
     }
+
 }

@@ -2,7 +2,7 @@
 import { SET_THREAD, SET_THREADS } from '../actionTypes';
 
 const initialState = {
-    thread: null,
+    thread_id: null,
     threads: {}
 };
 
@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
         case SET_THREAD:
             return {
                 ...state,
-                thread: action.thread
+                thread_id: action.thread_id
             };
         case SET_THREADS:
             return {
