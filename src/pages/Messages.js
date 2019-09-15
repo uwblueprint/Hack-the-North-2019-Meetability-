@@ -40,7 +40,6 @@ export default function Messages() {
         const otherUsername = all_users[otherUser].username;
         const handleFetchThread = () => {
             dispatch(fetchThread(key));
-
         };
 
         return (
