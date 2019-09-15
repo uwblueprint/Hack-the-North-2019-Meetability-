@@ -30,8 +30,6 @@ export const fetchThreads = () => dispatch => {
 
                 });
 
-                console.log('THREADS', threads)
-
                 dispatch({
                     type: SET_THREADS,
                     threads
@@ -44,6 +42,33 @@ export const fetchThreads = () => dispatch => {
     }
 }
 
+export const createThread = other_user_id => async dispatch => {
+
+    try {
+
+        const user = auth.currentUser;
+        const threads = Object.values(store.getState().thread.threads);
+        const otherUserThreads = threads.filter(thread => thread.users && thread.users.includes(other_user_id));
+
+        if (otherUserThreads && otherUserThreads.length > 0) return;
+
+        let newThreadRef = db.collection('threads').doc();
+        await newThreadRef.set({
+            messages: [],
+            users: [user.uid, other_user_id]
+        });
+
+        dispatch({
+            SET_THREAD,
+            thread_id: newThreadRef.key
+        })
+
+    } catch (err) {
+        console.error(err);
+    }
+
+}
+
 export const sendMessage = content => async dispatch => {
 
     try {
@@ -51,7 +76,6 @@ export const sendMessage = content => async dispatch => {
         const user = auth.currentUser;
         const thread_id = store.getState().thread.thread_id;
         const thread = store.getState().thread.threads[thread_id];
-        const messages = thread.messages;
 
         let dt = new Date();
 

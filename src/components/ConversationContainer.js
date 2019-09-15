@@ -39,7 +39,7 @@ export default function ConversationContainer() {
 
     return (
         <Fragment>
-            <div className='messages' id='messageList'>
+            <div className='messages' id='messageList' style={{height: '80vh', overflow: 'scroll'}}>
                 { messageContainers }
             </div>
         </Fragment>
