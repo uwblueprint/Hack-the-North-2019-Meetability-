@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 //import { } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { } from '../redux/selectors';
-//import { } from '../redux/actions';
+import { sendMessage } from '../redux/actions';
 //import { makeStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
 import { TextField } from '@material-ui/core';
@@ -19,21 +19,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function ReplyMessageContainer() {
 
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     //const classes = useStyles();
     const thread = useSelector(getThread)
-
     
     const handleKeyUp = (event) => {
         if (event.keyCode == 13){
             sendMessage()
         }
     }
-    const sendMessage = () => {
+    const handleSendMessage = () => {
         const message = document.getElementById("message-text-field").value
         console.log(message)
-        //send message
-      
+        dispatch(sendMessage(message));
     }
 
     return (
@@ -43,7 +41,7 @@ export default function ReplyMessageContainer() {
                 </TextField>
             </div>
             <div style={{position:"absolute", bottom: "5px", right:"45px", borderRadius:"100px", padding: "10px"}}>
-                <Button variant="outlined" style={{}} onClick={sendMessage} >
+                <Button variant="outlined" style={{}} onClick={handleSendMessage} >
                     Send
                 </Button>
             </div>

@@ -44,22 +44,23 @@ export const fetchThreads = () => dispatch => {
     }
 }
 
-export const sendMessage = ({ content }) => async dispatch => {
+export const sendMessage = content => async dispatch => {
 
     try {
 
         const user = auth.currentUser;
         const thread_id = store.getState().thread.thread_id;
+        const thread = store.getState().thread.threads[thread_id];
+        const messages = thread.messages;
 
-        let threadRef = db.collection('threads').doc(thread_id);
         let dt = new Date();
 
-        threadRef.update({
-            messages: firebase.firestore.FieldValue.arrayUnion({
+        await db.collection('threads').doc(thread_id).update({
+            messages: [...thread.messages, {
                 content,
                 from: user.uid,
                 timestamp: dt.toISOString()
-            })
+            }]
         });
 
     } catch (err) {
