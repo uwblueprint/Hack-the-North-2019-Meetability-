@@ -38,26 +38,25 @@ export default function Org() {
     };
     
     const items = Object.keys(questions).map((key, i) =>
-        <div key={i}>
+        <div key={i} style={{width: '100%'}}>
             <h1>{questions[key]}</h1>
             <Grid item xs={12}>
                 <TextField label={key}
                     variant="outlined"
                     value={state[key] || ''}
                     onChange={handleChange(key)}
-                    type=""
-                    name=""
                     fullWidth
                     className={classes.textField}
                 />
             </Grid>
+            <br/>
         </div>
     );
 
 
     const saveAndContinue = async () => {
         state["type"] = "org"
-        await dispatch(updateUser({ questions: state }));
+        await dispatch(updateUser({ type: "org", questions: state }));
         navigate("/");
     }
         
@@ -65,7 +64,7 @@ export default function Org() {
         return (
             <div>
                 <Page title="Individual">
-                    <Typography align="center" variant="h3" component="h3">Please fill in your details!</Typography>
+                    <Typography align="center" variant="h3" component="h3" style={{height: '80px'}}>Organization Details</Typography>
                     <br/>
                     <Grid container spacing={2}>
                         {items}
