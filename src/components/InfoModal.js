@@ -32,7 +32,7 @@ export default function InfoModal() {
         <Fragment>
             <Dialog open={show} onClose={handleClose}>
                 <DialogContent dividers  className={classes.content}>
-                    {warning ? warning : <CircularProgress/>}
+                    {warning ? warning : <CircularProgress style={{margin: 'auto'}}/>}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">Close</Button>

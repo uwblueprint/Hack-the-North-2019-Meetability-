@@ -204,7 +204,7 @@ export const fetchFollowing = () => dispatch => {
 
                 querySnapshot.forEach(doc => {
 
-                    if (user.following && user.following.length && user.following.includes(doc.id)) {
+                    if (user && user.following && user.following.length && user.following.includes(doc.id)) {
                         const data = doc.data();
                         following[doc.id] = data;
 
