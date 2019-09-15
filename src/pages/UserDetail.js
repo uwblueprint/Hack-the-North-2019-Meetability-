@@ -138,14 +138,17 @@ export default function UserDetail({ selected_user_id = '' }) {
                                         <ListItemIcon><ChatIcon /></ListItemIcon>
                                         <ListItemText primary="Send Message" />
                                     </ListItem>
+                                    { selectedUser && selectedUser.type && selectedUser.type === "org" ?
+                                    <ListItem button onClick={handleFollowUser}>
+                                    <ListItemIcon><ChatIcon /></ListItemIcon>
+                                    <ListItemText primary={user && user.following && user.following.includes(selected_user_id) ? 'Already following' : 'Follow'} />
+                                </ListItem> 
+                                    :
                                     <ListItem button onClick={handleAddFriend}>
                                         <ListItemIcon><ChatIcon /></ListItemIcon>
                                         <ListItemText primary={user && user.friends && user.friends.includes(selected_user_id) ? 'Already a friend' : 'Add friend'} />
                                     </ListItem>
-                                    <ListItem button onClick={handleFollowUser}>
-                                        <ListItemIcon><ChatIcon /></ListItemIcon>
-                                        <ListItemText primary={user && user.following && user.following.includes(selected_user_id) ? 'Already following' : 'Follow'} />
-                                    </ListItem>
+                                    }
                                 </List>
                             </CardContent>
                         </Card>
