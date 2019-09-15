@@ -38,8 +38,8 @@ export default function Org() {
     };
     
     const items = Object.keys(questions).map((key, i) =>
-        <div style={{width: '100%'}}>
-            {/*<h1 key={i}>{questions[key]}</h1>*/}
+        <div key={i} style={{width: '100%'}}>
+            <h1>{questions[key]}</h1>
             <Grid item xs={12}>
                 <TextField label={key}
                     variant="outlined"

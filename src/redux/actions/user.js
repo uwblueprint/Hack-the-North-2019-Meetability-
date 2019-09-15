@@ -255,3 +255,48 @@ export const fetchFollowers = () => dispatch => {
     }
 
 };
+
+export const addFriend = (otherUserId) => async dispatch => {
+
+    try {
+
+        const userCred = auth.currentUser;
+        let user = store.getState().user.user;
+        let otherUser = store.getState().user.all_users[otherUserId];
+
+        if (!user || !otherUser) return;
+
+        let userFriends = user.friends || [];
+        let otherUserFriends = otherUser.friends || [];
+
+        if(userFriends.includes(otherUserId)) return;
+
+        await db.collection('users').doc(userCred.uid).update({ friends: [...userFriends, otherUserId] });
+        await db.collection('users').doc(otherUserId).update({ friends: [...otherUserFriends, userCred.uid] });
+
+    } catch (err) {
+        console.warn(err);
+    }
+
+};
+
+export const followUser = (otherUserId) => async dispatch => {
+
+    try {
+
+        const userCred = auth.currentUser;
+        let user = store.getState().user.user;
+        let otherUser = store.getState().user.all_users[otherUserId];
+
+        if (!user || !otherUser) return;
+
+        let userFollowing = user.following || [];
+        if(userFollowing.includes(otherUserId)) return;
+
+        await db.collection('users').doc(userCred.uid).update({ following: [...userFollowing, otherUserId] });
+
+    } catch (err) {
+        console.warn(err);
+    }
+
+};

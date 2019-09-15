@@ -2,8 +2,8 @@
 import React, { } from 'react';
 import { navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../redux/selectors';
-import { createThread } from '../redux/actions';
+import { getAllUsers, getUser } from '../redux/selectors';
+import { createThread, addFriend, followUser } from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Page from '../components/Page';
 import Grid from '@material-ui/core/Grid';
@@ -25,6 +25,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TodayIcon from '@material-ui/icons/Today';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DescriptionIcon from '@material-ui/icons/Description';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -41,12 +42,21 @@ export default function UserDetail({ selected_user_id = '' }) {
     const dispatch = useDispatch();
     const classes = useStyles();
 
+    const user = useSelector(getUser);
     const allUsers = useSelector(getAllUsers);
     const selectedUser = allUsers[selected_user_id] || null;
 
     const handleCreateThread = async () => {
         await dispatch(createThread(selected_user_id));
         navigate('/messages');
+    };
+
+    const handleAddFriend = async () => {
+        await dispatch(addFriend(selected_user_id));
+    };
+
+    const handleFollowUser = async () => {
+        await dispatch(followUser(selected_user_id));
     };
 
     const getEventList = () => {
@@ -61,23 +71,23 @@ export default function UserDetail({ selected_user_id = '' }) {
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}>
                         <List>
-                        <ListItem>
-                                        <ListItemIcon><TodayIcon /></ListItemIcon>
-                                        <ListItemText primary={item.name} secondary={date}  />
-                                    </ListItem>
-                                    </List>
+                            <ListItem>
+                                <ListItemIcon><TodayIcon /></ListItemIcon>
+                                <ListItemText primary={item.name} secondary={date} />
+                            </ListItem>
+                        </List>
                     </ExpansionPanelSummary>
-                    <Divider/>
+                    <Divider />
                     <ExpansionPanelDetails>
                         <List>
-                        <ListItem>
-                                        <ListItemIcon><LocationOnIcon /></ListItemIcon>
-                                        <ListItemText primary={item.location} />
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemIcon><DescriptionIcon /></ListItemIcon>
-                                        <ListItemText primary={item.description} />
-                                    </ListItem>
+                            <ListItem>
+                                <ListItemIcon><LocationOnIcon /></ListItemIcon>
+                                <ListItemText primary={item.location} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon><DescriptionIcon /></ListItemIcon>
+                                <ListItemText primary={item.description} />
+                            </ListItem>
 
                         </List>
                     </ExpansionPanelDetails>
@@ -97,6 +107,16 @@ export default function UserDetail({ selected_user_id = '' }) {
 
     } else {
 
+        const listItemQuestions = selectedUser.questions && Object.keys(selectedUser.questions).map((key, i) => {
+
+            return (
+                <ListItem key={i}>
+                    <ListItemIcon><ArrowRightIcon /></ListItemIcon>
+                    <ListItemText primary={`${key}: ${selectedUser.questions[key]}`} />
+                </ListItem>
+            );
+        })
+
         return (
             <Page title={selectedUser.username}>
 
@@ -112,9 +132,19 @@ export default function UserDetail({ selected_user_id = '' }) {
                                         <ListItemText primary={selectedUser.type || 'Individual'} />
                                     </ListItem>
                                     <Divider />
+                                    {listItemQuestions}
+                                    <Divider />
                                     <ListItem button onClick={handleCreateThread}>
                                         <ListItemIcon><ChatIcon /></ListItemIcon>
                                         <ListItemText primary="Send Message" />
+                                    </ListItem>
+                                    <ListItem button onClick={handleAddFriend}>
+                                        <ListItemIcon><ChatIcon /></ListItemIcon>
+                                        <ListItemText primary={user && user.friends && user.friends.includes(selected_user_id) ? 'Already a friend' : 'Add friend'} />
+                                    </ListItem>
+                                    <ListItem button onClick={handleFollowUser}>
+                                        <ListItemIcon><ChatIcon /></ListItemIcon>
+                                        <ListItemText primary={user && user.following && user.following.includes(selected_user_id) ? 'Already following' : 'Follow'} />
                                     </ListItem>
                                 </List>
                             </CardContent>
