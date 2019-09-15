@@ -43,7 +43,7 @@ export default function Messages() {
         };
 
         if (index === 0) {
-            handleFetchThread()
+           // handleFetchThread()
         }
         return (
             <Tab

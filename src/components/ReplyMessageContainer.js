@@ -37,7 +37,7 @@ export default function ReplyMessageContainer() {
         dispatch(sendMessage(message));
         textField.value = ''
         sleep(100).then(() => {
-            document.getElementById("messageList").scrollTop = document.getElementById("messageList").scrollHeight + 200
+            document.getElementById("messageList").scrollTop = document.getElementById("messageList").scrollHeight
           })
     }
 
